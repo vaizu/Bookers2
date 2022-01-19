@@ -1,6 +1,6 @@
 <% @books.each do |book| %>
 <div>
-  <p>投稿ユーザー画像</p>
+  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
   <%= link_to book_path(book.id) do %>
     Title：<%= book.title %>
   <% end %>
