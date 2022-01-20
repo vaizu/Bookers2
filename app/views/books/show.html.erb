@@ -1,5 +1,5 @@
 <div>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image("100x100") %></p>
   <p><%= @book.user.name %></p>
   <p><%= @book.title %></p>
   <p>説明：<%= @book.body %></p>

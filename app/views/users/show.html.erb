@@ -2,17 +2,22 @@
   <h1>User info</h1>
   <%= image_tag @user.get_profile_image("100x100") %>
   <h3>name<%= @user.name %></h3>
+  <h3>introduction<%= @user.introduction %></h3>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
 </div>
 
 <!-- ユーザーの投稿一覧 -->
 
+<h1>Books</h1>
+
 <% @books.each do |book| %>
 <div>
-  <%= link_to book_path(book.id) do %>
-
-  <% end %>
   <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image("100x100") %></p>
-  <p>Title：<%= book.title %></p>
+  <%= link_to book_path(book.id) do %>
+    <p>Title：<%= book.title %></p>
+  <% end %>
   <p>Opinion：<%= book.body %></p>
 </div>
 <% end %>
