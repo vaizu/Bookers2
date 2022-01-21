@@ -1,7 +1,9 @@
+<%= flash[:notice] %>
+<%= render 'list', books: @books %>
 <h1>Book detail</h1>
 <div>
   <%= image_tag @book.user.get_profile_image("100x100") %>
-  <%= link_to @book.user.name,"/users/user_path(user.id)" %>
+  <%= link_to @book.user.name, user_path(:id) %>
   <%= @book.title %>
   <%= @book.body %>
   <% if @book.user == current_user %>
