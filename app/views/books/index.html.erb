@@ -3,65 +3,67 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <title>Bookers2</title>
   </head>
 <body>
+  <main>
     <p>
     <%= flash[:notice] %>
     </p>
-<div class = "container px-5 px-sm-0">
-  <div id = "error_explanation">
-<% if @book.errors.any? %>
-  <h3>
-  <%= @book.errors.count %>errors prohibited this obj from being saved:
-  </h3>
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-<% end %>
-  </ul>
-  </div>
-  <div class = "row">
+    <div class = "container px-5 px-sm-0">
+      <div id = "error_explanation">
+        <% if @book.errors.any? %>
+          <h3>
+            <%= @book.errors.count %>errors prohibited this obj from being saved:
+          </h3>
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+        <% end %>
+          </ul>
+      </div>
+      <div class = "row">
+        <%= render 'list', book: @book, user: @user %>
+          <div class = "col-md-8 offset-md-1">
+          <h2>Books</h2>
+          <table class = "table table-hover table-inverse">
 
-<%= render 'list', books: @books %>
-
-<div class = "col-md-8 offset-md-1">
-  <h2>Books</h2>
-  <table class = "table table-hover table-inverse">
-
-    <thead>
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Opinion</th>
-        <th colspan = "3"></th>
-      </tr>
-    </thead>
-     <% @books.each do |book| %>
-     <tbody>
-       <tr>
-         <td>
-           <%= link_to user_path(book.id)  do %>
-           <%= image_tag book.user.get_profile_image("40x40") %>
-           <% end %>
-        </td>
-        <td>
-          <%= link_to book_path(book.id) do %>
-          <%= book.title %>
-          <% end %>
-        </td>
-        <td>
-          <%= book.body %>
-        </td>
-      </tr>
-    </tbody>
-    <% end %>
-    </table>
-    </div>
-    </div>
-    </div>
-
+            <thead>
+              <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Opinion</th>
+                <th colspan = "3"></th>
+              </tr>
+            </thead>
+             <% @books.each do |book| %>
+               <tbody>
+                 <tr>
+                   <td>
+                     <%= link_to user_path(book.user.id)  do %>
+                       <%= image_tag book.user.get_profile_image("40x40") %>
+                     <% end %>
+                    </td>
+                    <td>
+                      <%= link_to book_path(book.id) do %>
+                        <%= book.title %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= book.body %>
+                    </td>
+                  </tr>
+                </tbody>
+              <% end %>
+            </table>
+           </div>
+          </div>
+        </div>
+      </main>
+  </body>
+</html>
